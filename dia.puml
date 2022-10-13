@@ -1,0 +1,73 @@
+@startuml
+    class Employee {
+        -id : final String 
+        -name : String
+        -salaryGross : double
+
+        +Employee(String id, String name, double salaryGross)
+        +getId() : String
+        +getName() : String
+        +setId(id : String) : void
+        +setName(name : String) : void
+        +getSalaryGross() : double
+        +setSalaryGross(salaryGross : double) : void
+        +getSalaryNet() : double
+    }
+    class Manager {
+        -degree : String
+        -basicSalary : double
+        +Manager(String id, String name, double salaryGross, String degree)
+        +getDegree() : String
+        +getBasicSalary() : double
+        +setDegree(degree : String) : void
+        +setBasicSalary(basicSalary : double) : void
+        +setSalaryGross(salaryGross : double) : void
+    }
+    class Director {
+        -department : String
+        +Director(String id, String name, double salaryGross, String department)
+        +getDepartment() : String
+        +setDepartment(department : String) : void
+    }
+    class Intern {
+        -basicSalary : double
+        -gpa : int
+        +Intern(String id, String name, double salaryGross, int gpa)
+        +getGpa() : int
+        +getBasicSalary() : double
+        +setGpa(gpa : int) : void
+        +setSalaryGross(salaryGross : double) : void
+        +getSalaryNet() : double
+
+    }
+    class Company {
+        -employees : LinkedHashMap<String, Employee>
+        +Company()
+        +createEmployee(id : String, name : String, salaryGross : Double) : String
+        +createEmployee(id : String, name : String, salaryGross : Double, degree : String) : String
+        +createEmployee(id : String, name : String, salaryGross : Double, degree : String, department : String) : String
+        +createEmployee(id : String, name : String, salaryGross : Double, gpa : int) : String
+        +removeEmployee(id : String) : String
+        +printEmployee(id : String) : String
+        +printAllEmployees() : String
+        +getGrossSumm() : double
+        +getTotalNetSalary() : double
+        +printSortedEmployees() : String
+        -updatedSuccessfully(id : String) : String
+        +updateEmployeeName(id : String, newName : String) : String
+        +updateGrossSalary(id : String, newSalary : double) : String
+        +updateManagerDegree(id : String, newDegree : String) : String
+        +updateDirectorDept(id : String, newDepartment : String) : String
+        +updateInternGPA(id : String, newGpa : int) : String
+        +getNetSalary(id : String) : double
+        +mapEachDegree() : Map<String, Integer>
+        +promoteToManager(id : String, degree : String) : String
+        +promoteToDirector(id : String, degree : String, department : String) : String
+        +promoteToIntern(id : String, gpa : int) : String
+    }
+
+    Employee <|-- Manager
+    Manager <|-- Director
+    Employee <|-- Intern
+    Company *--> Employee
+@enduml

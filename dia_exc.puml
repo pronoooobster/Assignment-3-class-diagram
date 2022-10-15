@@ -1,5 +1,64 @@
 @startuml
 
+class NoEmployeesException {
+    +NoEmployeesException()
+}
 
+class DefaultException {
+    +DefaultException()
+    +DefaultException(String message)
+}
+
+class CannotBeBlankException {
+    +CannotBeBlankException()
+    +CannotBeBlankException(String message)
+}
+
+class Exception {
+
+}
+
+class Company {
+
+}
+
+class Employee {
+
+}
+
+class Manager {
+
+}
+
+class Director {
+
+}
+
+class Intern {
+
+}
+
+Exception <|-- NoEmployeesException
+Exception <|-- DefaultException
+Exception <|-- CannotBeBlankException
+
+Employee <|-- Manager
+Employee <|-- Intern
+Manager <|-- Director
+
+Employee <--* Company
+
+CannotBeBlankException <|.. Employee
+DefaultException <|.. Employee
+
+DefaultException <|.. Intern
+
+DefaultException <|.. Manager
+
+DefaultException <|.. Director
+
+CannotBeBlankException <|.. Company
+DefaultException <|.. Company
+NoEmployeesException <|.. Company
 
 @enduml

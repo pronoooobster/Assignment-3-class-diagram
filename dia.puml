@@ -13,6 +13,13 @@
         +setSalaryGross(salaryGross : double) : void
         +getSalaryNet() : double
     }
+    abstract class Factory {
+        {static} +createEmployee(String id, String name, double salaryGross) : Employee
+        {static} +createEmployee(String id, String name, double salaryGross, String degre) : Employee
+        {static} +createEmployee(String id, String name, double salaryGross, String degree, String department) : Employee
+        {static} +createEmployee(String id, String name, double salaryGross, int gpa) : Employee
+    }
+
     class Manager {
         -degree : String
         -basicSalary : double
@@ -70,4 +77,11 @@
     Manager <|-- Director
     Employee <|-- Intern
     Company *--> Employee
+    
+    Employee <.. Factory : createEmployee()
+    Manager <.. Factory : createEmployee()
+    Director <.. Factory : createEmployee()
+    Intern <.. Factory : createEmployee()
+
+    Factory <.. Company : use
 @enduml
